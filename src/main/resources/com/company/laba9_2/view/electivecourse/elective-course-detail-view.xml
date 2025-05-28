@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://electiveCourseDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="electiveCourseDc"
+                  class="com.company.laba9_2.entity.ElectiveCourse">
+            <fetchPlan extends="_base">
+                <property name="studyProgram" fetchPlan="_base"/>
+                <property name="students" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="electiveCourseDl"/>
+            <collection id="studentsDc" property="students"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <formLayout id="form" dataContainer="electiveCourseDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <textField id="nameField" property="name"/>
+            <textField id="hoursField" property="hours"/>
+            <entityPicker id="studyProgramField" property="studyProgram">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+        </formLayout>
+        <dataGrid id="studentsDataGrid" dataContainer="studentsDc" width="100%" minHeight="20em">
+            <columns>
+                <column property="fullName"/>
+                <column property="birthDate"/>
+                <column property="studentCardNumber"/>
+            </columns>
+        </dataGrid>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+    </layout>
+</view>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="laba9_2">
+        <createTable tableName="ELECTIVE_COURSE">
+            <column autoIncrement="true" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ELECTIVE_COURSE"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="HOURS" type="INT"/>
+            <column name="STUDY_PROGRAM_ID" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="laba9_2">
+        <createTable tableName="STUDENT">
+            <column autoIncrement="true" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STUDENT"/>
+            </column>
+            <column name="FULL_NAME" type="VARCHAR(255)"/>
+            <column name="BIRTH_DATE" type="DATE"/>
+            <column name="STUDENT_CARD_NUMBER" type="VARCHAR(255)"/>
+            <column name="STUDY_PROGRAM_ID" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="laba9_2">
+        <createTable tableName="STUDENT_ELECTIVE_COURSE_LINK">
+            <column name="ELECTIVE_COURSE_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STUDENT_ELECTIVE_COURSE_LINK"/>
+            </column>
+            <column name="STUDENT_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STUDENT_ELECTIVE_COURSE_LINK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="laba9_2">
+        <createTable tableName="STUDY_PROGRAM">
+            <column autoIncrement="true" name="id" startWith="1" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_STUDY_PROGRAM"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="laba9_2">
+        <addForeignKeyConstraint baseColumnNames="STUDY_PROGRAM_ID" baseTableName="ELECTIVE_COURSE"
+                                 constraintName="FK_ELECTIVE_COURSE_ON_STUDY_PROGRAM" referencedColumnNames="id"
+                                 referencedTableName="STUDY_PROGRAM"/>
+    </changeSet>
+    <changeSet id="6" author="laba9_2">
+        <addForeignKeyConstraint baseColumnNames="STUDY_PROGRAM_ID" baseTableName="STUDENT"
+                                 constraintName="FK_STUDENT_ON_STUDY_PROGRAM" referencedColumnNames="id"
+                                 referencedTableName="STUDY_PROGRAM"/>
+    </changeSet>
+    <changeSet id="7" author="laba9_2">
+        <addForeignKeyConstraint baseColumnNames="ELECTIVE_COURSE_ID" baseTableName="STUDENT_ELECTIVE_COURSE_LINK"
+                                 constraintName="FK_STUELECOU_ON_ELECTIVE_COURSE" referencedColumnNames="id"
+                                 referencedTableName="ELECTIVE_COURSE"/>
+    </changeSet>
+    <changeSet id="8" author="laba9_2">
+        <addForeignKeyConstraint baseColumnNames="STUDENT_ID" baseTableName="STUDENT_ELECTIVE_COURSE_LINK"
+                                 constraintName="FK_STUELECOU_ON_STUDENT" referencedColumnNames="id"
+                                 referencedTableName="STUDENT"/>
+    </changeSet>
+</databaseChangeLog>

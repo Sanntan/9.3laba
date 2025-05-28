@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://studyProgramListView.title"
+      focusComponent="studyProgramsDataGrid">
+    <data>
+        <collection id="studyProgramsDc"
+                    class="com.company.laba9_2.entity.StudyProgram">
+            <fetchPlan extends="_base"/>
+            <loader id="studyProgramsDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from StudyProgram e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="studyProgramsDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="addButton" action="studyProgramsDataGrid.addAction"/>
+            <button id="createButton" action="studyProgramsDataGrid.createAction"/>
+            <button id="editButton" action="studyProgramsDataGrid.editAction"/>
+            <button id="readButton" action="studyProgramsDataGrid.readAction"/>
+            <button id="refreshButton" action="studyProgramsDataGrid.refreshAction"/>
+            <button id="removeButton" action="studyProgramsDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="studyProgramsDl"/>
+        </hbox>
+        <dataGrid id="studyProgramsDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="studyProgramsDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="addAction" type="list_add"/>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="readAction" type="list_read"/>
+                <action id="refreshAction" type="list_refresh"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="name"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
