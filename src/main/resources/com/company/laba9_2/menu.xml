@@ -11,11 +11,13 @@
         <item view="Student.list"
               title="msg://com.company.laba9_2.view.student/studentListView.title"/>
 
-        <item view="ElectiveCourse.list"
-              title="msg://com.company.laba9_2.view.electivecourse/electiveCourseListView.title"/>
-
         <item view="StudyProgram.list"
               title="msg://com.company.laba9_2.view.studyprogram/studyProgramListView.title"/>
+
+        <item view="ElectiveCourse.list"
+              title="msg://com.company.laba9_2.view.electivecourse/electiveCourseListView.title"/>
+        <item view="Statisticsview" title="Статистика"/>
+
     </menu>
 
 </menu-config>

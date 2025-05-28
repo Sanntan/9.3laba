@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="Статистика">
+
+    <layout spacing="true" padding="true">
+        <textField id="studentIdField" label="ID студента"/>
+        <textField id="lastNameField" label="Фамилия"/>
+
+        <button id="btnCountStudents" text="Количество студентов"/>
+        <button id="btnAverageHours" text="Среднее часов"/>
+        <button id="btnFindStudentById" text="Найти по ID"/>
+        <button id="btnFindByLastName" text="Найти по фамилии"/>
+    </layout>
+
+</view>
